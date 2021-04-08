@@ -1,5 +1,5 @@
 {
-  "name": "cs_migration_tracker",
+  "name": "voodoo-symposium",
   "description": "Track app migrations to the IL4 cloud environment",
   "scripts": {
     "start": "run-p start:dev start:api",
