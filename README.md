@@ -1,4 +1,4 @@
-# Starter Kit for [Building Applications in React and Redux](http://www.pluralsight.com/author/cory-house) on Pluralsight
+# Migration tracking application to track migration of on-premises applications to the cloud
 
 ## Get Started
 
