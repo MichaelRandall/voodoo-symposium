@@ -75,10 +75,12 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = () => {
   return {
-    getCourses: () => dispatch(getCourses()),
-    getAuthors: () => dispatch(getAuthors()), //whole code breaks if these commented out
+    // getCourses: () => dispatch(getCourses()),
+    // getAuthors: () => dispatch(getAuthors()), //whole code breaks if these commented out
+    getCourses,
+    getAuthors
   };
 };
 

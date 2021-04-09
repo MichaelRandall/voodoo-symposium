@@ -1,11 +1,11 @@
-import React from "react";
+import React, { Suspense } from "react";
 
-import AuthorList from "./AuthorList";
+const AuthorList = React.lazy(() => import("./AuthorList"));
 
 const AuthorsPage = () => {
   return (
     <>
-      <AuthorList />
+    <Suspense fallback={<div>Loading...</div>}><AuthorList /></Suspense>
     </>
   );
 };

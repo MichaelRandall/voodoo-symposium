@@ -1,12 +1,13 @@
-import React from "react";
+import React, { Suspense } from "react";
 
-import CourseList from "./CourseList";
+const CourseList = React.lazy(() => import("./CourseList"));
 
 const CoursesPage = () => {
   // debugger;
   return (
     <>
-      <CourseList />
+    <Suspense fallback={<div>Loading...</div>}><CourseList /></Suspense>
+      
     </>
   );
 };
