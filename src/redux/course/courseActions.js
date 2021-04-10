@@ -39,7 +39,9 @@ export const getCourses = () => {
     axios
       .get(baseUrl)
       .then((response) => {
+        // console.log("this is the course data", response.data);
         const courses = response.data;
+        console.log("this be the ", courses);
         dispatch(getCoursesSuccess(courses));
       })
       .catch((error) => {

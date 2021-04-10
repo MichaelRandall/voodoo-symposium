@@ -39,7 +39,9 @@ export const getAuthors = () => {
     axios
       .get(baseUrl)
       .then((response) => {
+        // console.log("this is the author data", response.data);
         const authors = response.data;
+        console.log("this be the ", authors);
         dispatch(getAuthorsSuccess(authors));
       })
       .catch((error) => {
