@@ -6,8 +6,6 @@ import { getCourses, getAuthors } from "../../redux";
 
 // getAuthors argument/param will data shows in console
 const CourseList = ({ coursesData, getCourses, authorsData, getAuthors }) => {
-  // console.log(coursesData);
-  // console.log(authorsData);
   useEffect(() => {
     getCourses(); // actually pulls data / also a callback
     getAuthors(); // actually pulls data and shows in console / also a callback
@@ -52,29 +50,8 @@ const CourseList = ({ coursesData, getCourses, authorsData, getAuthors }) => {
 };
 
 const mapStateToProps = (state) => {
-  // console.log(typeof state.authors);
-  // console.log(Object.keys(state.courses));
-  // console.log("The state of state");
-  // console.log(state);
-  // console.log("The state of courses");
-  // console.log("this is good", state.courses);
-  // console.log(typeof state.authors);
-  // console.log(Object.keys(state.authors));
-  // console.log("The state of authors");
-  // console.log("this is good", state.authors);
   return {
     coursesData: state.courses,
-    // authorsData: state.authors,
-    // coursesData:
-    //   state.authors.length === 0
-    //     ? []
-    //     : state.courses.map((course) => {
-    //         return {
-    //           ...course,
-    //           authorName: state.authors.find((a) => a.id === course.authorId)
-    //             .name,
-    //         };
-    //       }),
     authorsData: state.authors,
   };
 };

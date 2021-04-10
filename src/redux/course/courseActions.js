@@ -8,15 +8,12 @@ import {
 } from "./courseTypes";
 
 export const getCoursesRequest = () => {
-  console.log("getCoursesRequest called");
   return {
     type: GET_COURSES_REQUEST,
   };
 };
 
 const getCoursesSuccess = (courses) => {
-  console.log("getCoursesSuccess called");
-  console.log(courses);
   return {
     type: GET_COURSES_SUCCESS,
     payload: courses,
@@ -24,8 +21,6 @@ const getCoursesSuccess = (courses) => {
 };
 
 const getCoursesFailure = (error) => {
-  console.log("getCoursesFailure called");
-  console.log(error);
   return {
     type: GET_COURSES_FAILURE,
     payload: error,
@@ -33,15 +28,13 @@ const getCoursesFailure = (error) => {
 };
 
 export const getCourses = () => {
-  console.log("getCourses from courseActions called");
   return (dispatch) => {
     dispatch(getCoursesRequest);
     axios
       .get(baseUrl)
       .then((response) => {
-        // console.log("this is the course data", response.data);
         const courses = response.data;
-        console.log("this be the ", courses);
+        // console.log("This is the response for courses ", courses)
         dispatch(getCoursesSuccess(courses));
       })
       .catch((error) => {

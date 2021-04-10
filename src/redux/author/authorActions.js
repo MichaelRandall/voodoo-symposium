@@ -8,15 +8,12 @@ import {
 } from "./authorTypes";
 
 export const getAuthorsRequest = () => {
-  console.log("getAuthorsRequest called");
   return {
     type: GET_AUTHORS_REQUEST,
   };
 };
 
 const getAuthorsSuccess = (authors) => {
-  console.log("getAuthorsSuccess called");
-  console.log(authors);
   return {
     type: GET_AUTHORS_SUCCESS,
     payload: authors,
@@ -24,8 +21,6 @@ const getAuthorsSuccess = (authors) => {
 };
 
 const getAuthorsFailure = (error) => {
-  console.log("getAuthorsFailure called");
-  console.log(error);
   return {
     type: GET_AUTHORS_FAILURE,
     payload: error,
@@ -33,15 +28,13 @@ const getAuthorsFailure = (error) => {
 };
 
 export const getAuthors = () => {
-  console.log("getAuthors from authorActions called");
   return (dispatch) => {
     dispatch(getAuthorsRequest);
     axios
       .get(baseUrl)
       .then((response) => {
-        // console.log("this is the author data", response.data);
         const authors = response.data;
-        console.log("this be the ", authors);
+        // console.log("This is the response for authors ", authors);
         dispatch(getAuthorsSuccess(authors));
       })
       .catch((error) => {
