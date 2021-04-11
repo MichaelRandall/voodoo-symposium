@@ -4,11 +4,10 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { getCourses, getAuthors } from "../../redux";
 
-// getAuthors argument/param will data shows in console
-const CourseList = ({ coursesData, getCourses, authorsData, getAuthors }) => {
+const CourseList = ({ coursesData, authorsData, getCourses,  getAuthors }) => {
   useEffect(() => {
-    getCourses(); // actually pulls data / also a callback
-    getAuthors(); // actually pulls data and shows in console / also a callback
+    getAuthors();  // order of these function calls is important
+    getCourses();
   }, []);
 
   return coursesData.loading ? (
@@ -36,8 +35,7 @@ const CourseList = ({ coursesData, getCourses, authorsData, getAuthors }) => {
                 <td>{course.title}</td>
                 <td>
                   {
-                    authorsData.authors.find((a) => a.id === course.authorId)
-                      .name
+                  authorsData.authors.find((a) => a.id === course.authorId).name
                   }
                 </td>
                 <td>{course.category}</td>
@@ -59,7 +57,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getCourses: () => dispatch(getCourses()),
-    getAuthors: () => dispatch(getAuthors()), //whole code breaks if these commented out
+    getAuthors: () => dispatch(getAuthors()),
   };
 };
 
