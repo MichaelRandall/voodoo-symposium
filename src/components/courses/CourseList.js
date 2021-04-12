@@ -4,9 +4,9 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { getCourses, getAuthors } from "../../redux";
 
-const CourseList = ({ coursesData, authorsData, getCourses,  getAuthors }) => {
+const CourseList = ({ coursesData, authorsData, getCourses, getAuthors }) => {
   useEffect(() => {
-    getAuthors();  // order of these function calls is important
+    getAuthors(); // order of these function calls is important
     getCourses();
   }, []);
 
@@ -35,7 +35,8 @@ const CourseList = ({ coursesData, authorsData, getCourses,  getAuthors }) => {
                 <td>{course.title}</td>
                 <td>
                   {
-                  authorsData.authors.find((a) => a.id === course.authorId).name
+                    authorsData.authors.find((a) => a.id === course.authorId)
+                      .name
                   }
                 </td>
                 <td>{course.category}</td>
