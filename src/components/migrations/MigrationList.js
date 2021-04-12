@@ -6,7 +6,7 @@ import { getMigrations, getMembers } from "../../redux";
 
 const MigrationList = ({ migrationsData, membersData, getMigrations, getMembers }) => {
   useEffect(() => {
-    getMembers(); // order of these function calls is important
+    getMembers();
     getMigrations();
   }, []);
   return migrationsData.loading ? (
