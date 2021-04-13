@@ -5,7 +5,7 @@ import AboutPage from "./components/about/AboutPage";
 import Header from "./components/common/Header";
 import PageNotFound from "./components/common/PageNotFound";
 import CoursesPage from "./components/courses/CoursesPage";
-import CourseManagerPage from "./components/courses/CourseManagerPage";
+import CourseManagementPage from "./components/courses/CourseManagementPage";
 import AuthorsPage from "./components/authors/AuthorsPage";
 import MembersPage from "./components/members/MembersPage";
 import StagesPage from "./components/stages/StagesPage";
@@ -20,8 +20,8 @@ function App() {
         <Route exact path="/" component={HomePage} />
         <Route path="/about" component={AboutPage} />
         <Route path="/courses" component={CoursesPage} />
-        <Route path="/course/:slug" component={CourseManagerPage} />
-        <Route path="/course" component={CourseManagerPage} />
+        <Route path="/course/:slug" component={CourseManagementPage} />
+        <Route path="/course" component={CourseManagementPage} />
         <Route path="/authors" component={AuthorsPage} />
         <Route path="/members" component={MembersPage} />
         <Route path="/migrations" component={MigrationsPage} />

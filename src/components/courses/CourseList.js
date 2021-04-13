@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 
 //Redux
 import { connect } from "react-redux";
+
+// get actions - using named imports - currently only get requests
 import { getCourses, getAuthors } from "../../redux";
 
 // courses accessed by coursesData.courses, authorsData accessed by authorsData.authors
@@ -74,12 +76,18 @@ const { name } = person;
 // example of using destructuring - 3rd: use the name of the prop
 console.log("What is wrong? ", name);
 
-// defines what actions are available on your component
-const mapDispatchToProps = (dispatch) => {
-  return {
-    getCourses: () => dispatch(getCourses()),
-    getAuthors: () => dispatch(getAuthors()),
-  };
+// defines what actions are available on your component - object version, auto-wraps in dispatch, no full function
+const mapDispatchToProps = {
+  getCourses: getCourses,
+  getAuthors: getAuthors,
 };
+
+// defines what actions are available on props - functional version, requires dispatch and full function
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     getCourses: () => dispatch(getCourses()),
+//     getAuthors: () => dispatch(getAuthors()),
+//   };
+// };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CourseList);
