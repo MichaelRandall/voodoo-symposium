@@ -3,6 +3,9 @@ import {
   GET_COURSES_REQUEST,
   GET_COURSES_FAILURE,
   GET_COURSES_SUCCESS,
+  POST_COURSE_SUCCESS,
+  POST_COURSE_REQUEST,
+  POST_COURSE_FAILURE,
 } from "./courseTypes";
 
 const courseReducer = (state = initialState.courses, action) => {
@@ -23,6 +26,21 @@ const courseReducer = (state = initialState.courses, action) => {
         loading: false,
         courses: [],
         error: action.payload,
+      };
+    case POST_COURSE_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+    case POST_COURSE_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+      };
+    case POST_COURSE_FAILURE:
+      return {
+        ...state,
+        loading: false,
       };
     default:
       return state;

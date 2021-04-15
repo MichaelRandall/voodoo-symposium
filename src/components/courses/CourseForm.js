@@ -3,10 +3,14 @@ import React from "react";
 import TextInput from "../common/TextInput";
 import SelectInput from "../common/SelectInput";
 
-const CourseForm = (
-  { course, authors, onSave, onChange, saving = false },
-  errors = {}
-) => {
+const CourseForm = ({
+  course,
+  authors,
+  onSave,
+  onChange,
+  saving = false,
+  errors = {},
+}) => {
   return (
     <form onSubmit={onSave}>
       <h2>{course.id ? "Edit" : "Add"} Course</h2>
@@ -15,6 +19,7 @@ const CourseForm = (
           {errors.onSave}
         </div>
       )}
+
       <TextInput
         name="title"
         label="Title"

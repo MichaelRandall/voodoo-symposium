@@ -5,11 +5,10 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 // actions - only get for now
-import { getCourses, getAuthors } from "../../redux";
+import { getCourses, getAuthors, postCourse } from "../../redux";
 
 import CourseForm from "./CourseForm";
 import { newCourse } from "../../../tools/mockData";
-import { propTypes } from "react-bootstrap/esm/Image";
 
 // courses accessed by coursesData.courses, authorsData accessed by authorsData.authors
 const CourseManagementPage = ({
@@ -17,9 +16,14 @@ const CourseManagementPage = ({
   authorsData,
   getCourses,
   getAuthors,
+  postCourse,
   ...props
 }) => {
+  // ...props.course sets the initial course value, at this point, it is empty
+  // this is react state instance here - forms usually use react state, not redux
   const [course, setCourse] = useState({ ...props.course });
+  // console.log("This is getting passed in and it is empty ", course);
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
     if (coursesData.courses.length === 0) {
@@ -30,10 +34,28 @@ const CourseManagementPage = ({
     }
   }, []);
 
+  // allows for typing in the form - form components are managed
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setCourse((prevCourse) => ({
+      ...prevCourse,
+      [name]: name === "authorId" ? parseInt(value, 10) : value,
+    }));
+  };
+
+  const handleSave = (event) => {
+    event.preventDefault();
+    postCourse(course, history);
+  };
+
   return (
     <>
-      <h2>Manage Course</h2>
-      <CourseForm course={course} authors={authorsData} />
+      <CourseForm
+        course={course}
+        authors={authorsData.authors}
+        onChange={handleChange}
+        onSave={handleSave}
+      />
     </>
   );
 };
@@ -62,11 +84,10 @@ const { name } = person;
 console.log("What is wrong? ", name);
 
 // defines what actions are available on your component
-const mapDispatchToProps = (dispatch) => {
-  return {
-    getCourses: () => dispatch(getCourses()),
-    getAuthors: () => dispatch(getAuthors()),
-  };
+const mapDispatchToProps = {
+  getCourses: getCourses,
+  getAuthors: getAuthors,
+  postCourse: postCourse,
 };
 
 export default connect(
