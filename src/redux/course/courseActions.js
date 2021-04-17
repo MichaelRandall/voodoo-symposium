@@ -71,7 +71,7 @@ const postCourseFailure = (error) => {
 };
 
 // POST Course - THUNK async action creator
-export const postCourse = (course, history) => {
+export function postCourse(course) {
   const options = {
     headers: { "content-type": "application/json" },
   };
@@ -89,12 +89,9 @@ export const postCourse = (course, history) => {
           ? console.log("The other things happened for updates") // dispatch(putCourseSuccess(course))
           : dispatch(postCourseSuccess(course));
       })
-      .then(() => {
-        history.push("/courses");
-      })
       .catch((error) => {
         const errorMsg = error.message;
         dispatch(postCourseFailure(errorMsg));
       });
   };
-};
+}

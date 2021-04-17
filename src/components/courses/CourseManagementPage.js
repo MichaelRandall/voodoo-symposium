@@ -17,6 +17,7 @@ const CourseManagementPage = ({
   getCourses,
   getAuthors,
   postCourse,
+  history,
   ...props
 }) => {
   // ...props.course sets the initial course value, at this point, it is empty
@@ -44,8 +45,10 @@ const CourseManagementPage = ({
   };
 
   const handleSave = (event) => {
+    // console.log("This is the history ", history);
     event.preventDefault();
-    postCourse(course, history);
+    postCourse(course);
+    history.push("/courses");
   };
 
   return (

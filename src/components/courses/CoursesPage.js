@@ -4,13 +4,11 @@ const CourseList = React.lazy(() => import("./CourseList"));
 import { Redirect } from "react-router-dom";
 
 const CoursesPage = () => {
-  const [redirectToAddCoursePage, setRedirectToAddCoursePage] = useState(
-    "false"
-  );
+  const [redirectToAddCoursePage, setRedirectToAddCoursePage] = useState(false);
 
   return (
     <>
-      {this.state.redirectToAddCoursePage && <Redirect to="/course" />}
+      {redirectToAddCoursePage && <Redirect to="/course" />}
       <h2>Courses</h2>
 
       <button
