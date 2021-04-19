@@ -63,19 +63,34 @@ const CourseManagementPage = ({
   );
 };
 
+//function defined to getCourseBySlug - called a selector function / could be put in reducer
+//to be accessible by other components
+export function getCourseBySlug(courses, slug) {
+  console.log("getCourseBySlug been called", slug);
+  return courses.find((course) => course.slug === slug) || null;
+}
+
 // defines what properties are available on you component
 // selecting the part of the data from the store that the connected component needs.
 // the CourseManagementPage component has access to state.courses through the object key coursesData
 // the CourseManagementPage component has access to state.authors through the object key authorsData
 // mapStateToProps is called every time the store state changes
 // it receives the entire store state and you specify an object of data the component needs
-const mapStateToProps = (state) => {
-  const { courses, authors } = state;
+const mapStateToProps = (state, ownProps) => {
+  debugger;
+  // testing if slug passed to populate form - if slug passed get course otherwise get new empty course
+  const slug = ownProps.match.params.slug;
+  const course =
+    slug && state.courses.length > 0
+      ? getCourseBySlug(state.courses, slug)
+      : newCourse;
+  // destructuring courses and authors from state to shorten code from state.course and state.authors
+  // const { courses, authors } = state;
 
   return {
-    course: newCourse,
-    coursesData: courses,
-    authorsData: authors,
+    course: course,
+    coursesData: state.courses,
+    authorsData: state.authors,
   };
 };
 
