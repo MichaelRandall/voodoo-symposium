@@ -77,20 +77,20 @@ export function getCourseBySlug(courses, slug) {
 // mapStateToProps is called every time the store state changes
 // it receives the entire store state and you specify an object of data the component needs
 const mapStateToProps = (state, ownProps) => {
-  debugger;
+  // debugger;
   // testing if slug passed to populate form - if slug passed get course otherwise get new empty course
   const slug = ownProps.match.params.slug;
   const course =
-    slug && state.courses.length > 0
-      ? getCourseBySlug(state.courses, slug)
+    slug && state.courses.courses.length > 0
+      ? getCourseBySlug(state.courses.courses, slug)
       : newCourse;
   // destructuring courses and authors from state to shorten code from state.course and state.authors
-  // const { courses, authors } = state;
+  const { courses, authors } = state;
 
   return {
     course: course,
-    coursesData: state.courses,
-    authorsData: state.authors,
+    coursesData: courses,
+    authorsData: authors,
   };
 };
 

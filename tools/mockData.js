@@ -92,7 +92,7 @@ const members = [
   {
     id: 1,
     name: "Shannon",
-    sname: "S Palmer",
+    sname: "S Pymen",
     initials: "S.P.",
     alias: "Vision",
     pic: "/src/images/Vision.svg",
@@ -101,7 +101,7 @@ const members = [
   {
     id: 2,
     name: "Mike",
-    sname: "M Randall",
+    sname: "M Rinnckle",
     initials: "M.R.",
     alias: "The Hulk",
     pic: "/src/images/Hulk.svg",
@@ -110,7 +110,7 @@ const members = [
   {
     id: 3,
     name: "Jean",
-    sname: "J Lamboy",
+    sname: "J Lsomtom",
     initials: "J.L.",
     alias: "Jean Grey",
     pic: "/src/images/Jean.svg",
@@ -119,7 +119,7 @@ const members = [
   {
     id: 4,
     name: "Geraldine",
-    sname: "G Montgomery",
+    sname: "G Monteyhoo",
     initials: "G.M.",
     alias: "Storm",
     pic: "/src/images/Storm.svg",
@@ -128,7 +128,7 @@ const members = [
   {
     id: 5,
     name: "Justin",
-    sname: "J Barnett",
+    sname: "J Banquet",
     initials: "J.B.",
     alias: "Deadpool",
     pic: "/src/images/Deadpool.svg",
@@ -137,7 +137,7 @@ const members = [
   {
     id: 6,
     name: "Christian",
-    sname: "C Marzan",
+    sname: "C Marchant",
     initials: "C.M.",
     alias: "Sunspot",
     pic: "/src/images/Sunspot.svg",
@@ -146,7 +146,7 @@ const members = [
   {
     id: 7,
     name: "Lee",
-    sname: "L Oxley",
+    sname: "L Omsleyer",
     initials: "L.O.",
     alias: "Dr. Strange",
     pic: "/src/images/Strange.svg",
