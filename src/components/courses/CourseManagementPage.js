@@ -29,11 +29,13 @@ const CourseManagementPage = ({
   useEffect(() => {
     if (coursesData.courses.length === 0) {
       getCourses();
+    } else {
+      setCourse({ ...props.course });
     }
     if (authorsData.authors.length === 0) {
       getAuthors();
     }
-  }, []);
+  }, [props.course]);
 
   // allows for typing in the form - form components are managed
   const handleChange = (event) => {
