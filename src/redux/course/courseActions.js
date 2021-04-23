@@ -8,6 +8,9 @@ import {
   POST_COURSE_SUCCESS,
   POST_COURSE_REQUEST,
   POST_COURSE_FAILURE,
+  PUT_COURSE_SUCCESS,
+  PUT_COURSE_REQUEST,
+  PUT_COURSE_FAILURE,
 } from "./courseTypes";
 
 // GET Courses - action creators
@@ -82,16 +85,63 @@ export function postCourse(course) {
       // .post(baseUrl + (course.id || ""), options)
       // course is coming in from the form
       .post(baseUrl, course, options)
-      .then(() => {
+      .then((course) => {
         // console.log("this is the course.id", course.id);
         // currently no course.id exists so jumps to the second statement
         course.id
-          ? console.log("The other things happened for updates") // dispatch(putCourseSuccess(course))
+          ? dispatch(putCourseSuccess(course))
           : dispatch(postCourseSuccess(course));
       })
       .catch((error) => {
         const errorMsg = error.message;
         dispatch(postCourseFailure(errorMsg));
+      });
+  };
+}
+
+// PUT course action creators
+export const putCourseRequest = () => {
+  return {
+    type: PUT_COURSE_REQUEST,
+  };
+};
+
+const putCourseSuccess = (course) => {
+  return {
+    type: PUT_COURSE_SUCCESS,
+    payload: course,
+  };
+};
+
+const putCourseFailure = (error) => {
+  return {
+    type: PUT_COURSE_FAILURE,
+    payload: error,
+  };
+};
+
+// PUT course - THUNK async action creator
+export function putCourse(course) {
+  const options = {
+    headers: { "content-type": "application/json" },
+  };
+
+  return (dispatch) => {
+    dispatch(putCourseRequest);
+    axios
+      // .post(baseUrl + (course.id || ""), options)
+      // course is coming in from the form
+      .post(baseUrl, course, options)
+      .then(() => {
+        // console.log("this is the course.id", course.id);
+        // currently no course.id exists so jumps to the second statement
+        course.id
+          ? console.log("The other things happened for updates") // dispatch(putCourseSuccess(course))
+          : dispatch(putCourseSuccess(course));
+      })
+      .catch((error) => {
+        const errorMsg = error.message;
+        dispatch(putCourseFailure(errorMsg));
       });
   };
 }

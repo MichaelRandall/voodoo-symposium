@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 // actions - only get for now
-import { getCourses, getAuthors, postCourse } from "../../redux";
+import { getCourses, getAuthors, postCourse, putCourse } from "../../redux";
 
 import CourseForm from "./CourseForm";
 import { newCourse } from "../../../tools/mockData";
@@ -17,6 +17,7 @@ const CourseManagementPage = ({
   getCourses,
   getAuthors,
   postCourse,
+  // putCourse,
   history,
   ...props
 }) => {
@@ -46,6 +47,7 @@ const CourseManagementPage = ({
     }));
   };
 
+  // this calls postCourse which checks for an update also
   const handleSave = (event) => {
     // console.log("This is the history ", history);
     event.preventDefault();
@@ -54,14 +56,12 @@ const CourseManagementPage = ({
   };
 
   return (
-    <>
-      <CourseForm
-        course={course}
-        authors={authorsData.authors}
-        onChange={handleChange}
-        onSave={handleSave}
-      />
-    </>
+    <CourseForm
+      course={course}
+      authors={authorsData.authors}
+      onChange={handleChange}
+      onSave={handleSave}
+    />
   );
 };
 
@@ -108,6 +108,7 @@ const mapDispatchToProps = {
   getCourses: getCourses,
   getAuthors: getAuthors,
   postCourse: postCourse,
+  // putCourse: putCourse,
 };
 
 export default connect(

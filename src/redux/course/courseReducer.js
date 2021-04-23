@@ -6,6 +6,9 @@ import {
   POST_COURSE_SUCCESS,
   POST_COURSE_REQUEST,
   POST_COURSE_FAILURE,
+  PUT_COURSE_SUCCESS,
+  PUT_COURSE_REQUEST,
+  PUT_COURSE_FAILURE,
 } from "./courseTypes";
 
 const courseReducer = (state = initialState.courses, action) => {
@@ -38,6 +41,24 @@ const courseReducer = (state = initialState.courses, action) => {
         loading: false,
       };
     case POST_COURSE_FAILURE:
+      return {
+        ...state,
+        loading: false,
+      };
+    case PUT_COURSE_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+    // check this 11 handle creates and updates actions
+    case PUT_COURSE_SUCCESS:
+      return {
+        ...state.courses.courses.map((course) =>
+          course.id === action.course.id ? action.course : course
+        ),
+        loading: false,
+      };
+    case PUT_COURSE_FAILURE:
       return {
         ...state,
         loading: false,
