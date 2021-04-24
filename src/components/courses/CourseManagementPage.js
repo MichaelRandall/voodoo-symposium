@@ -17,7 +17,7 @@ const CourseManagementPage = ({
   getCourses,
   getAuthors,
   postCourse,
-  // putCourse,
+  putCourse,
   history,
   ...props
 }) => {
@@ -49,9 +49,8 @@ const CourseManagementPage = ({
 
   // this calls postCourse which checks for an update also
   const handleSave = (event) => {
-    // console.log("This is the history ", history);
     event.preventDefault();
-    postCourse(course);
+    course.id ? putCourse(course) : postCourse(course);
     history.push("/courses");
   };
 
@@ -68,7 +67,6 @@ const CourseManagementPage = ({
 //function defined to getCourseBySlug - called a selector function / could be put in reducer
 //to be accessible by other components
 export function getCourseBySlug(courses, slug) {
-  console.log("getCourseBySlug been called", slug);
   return courses.find((course) => course.slug === slug) || null;
 }
 
@@ -79,7 +77,6 @@ export function getCourseBySlug(courses, slug) {
 // mapStateToProps is called every time the store state changes
 // it receives the entire store state and you specify an object of data the component needs
 const mapStateToProps = (state, ownProps) => {
-  // debugger;
   // testing if slug passed to populate form - if slug passed get course otherwise get new empty course
   const slug = ownProps.match.params.slug;
   const course =
@@ -108,7 +105,7 @@ const mapDispatchToProps = {
   getCourses: getCourses,
   getAuthors: getAuthors,
   postCourse: postCourse,
-  // putCourse: putCourse,
+  putCourse: putCourse,
 };
 
 export default connect(

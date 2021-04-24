@@ -15,12 +15,14 @@ import {
 
 // GET Courses - action creators
 export const getCoursesRequest = () => {
+  console.log("actionCretor getCourseRequest called");
   return {
     type: GET_COURSES_REQUEST,
   };
 };
 
 const getCoursesSuccess = (courses) => {
+  console.log("actionCretor getCoursesSuccess called");
   return {
     type: GET_COURSES_SUCCESS,
     payload: courses,
@@ -28,13 +30,64 @@ const getCoursesSuccess = (courses) => {
 };
 
 const getCoursesFailure = (error) => {
+  console.log("actionCretor getCoursesFailure called");
   return {
     type: GET_COURSES_FAILURE,
     payload: error,
   };
 };
 
-// GET Courses - THUNK async action creator
+// POST Course - action creators
+export const postCourseRequest = () => {
+  console.log("actionCretor postCourseRequest called");
+  return {
+    type: POST_COURSE_REQUEST,
+  };
+};
+
+const postCourseSuccess = (course) => {
+  console.log("actionCretor ostCourseSuccess called");
+  return {
+    type: POST_COURSE_SUCCESS,
+    payload: course,
+  };
+};
+
+const postCourseFailure = (error) => {
+  console.log("actionCretor postCourseFailure called");
+  return {
+    type: POST_COURSE_FAILURE,
+    payload: error,
+  };
+};
+
+// PUT course action creators
+export const putCourseRequest = () => {
+  console.log("actionCretor putCourseRequest called");
+  return {
+    type: PUT_COURSE_REQUEST,
+  };
+};
+
+const putCourseSuccess = (course) => {
+  console.log("actionCretor putCourseSuccess called");
+  return {
+    type: PUT_COURSE_SUCCESS,
+    payload: course,
+  };
+};
+
+const putCourseFailure = (error) => {
+  console.log("actionCretor putCourseFailure called");
+  return {
+    type: PUT_COURSE_FAILURE,
+    payload: error,
+  };
+};
+
+// THUNK asycn action creators
+
+// GET Courses
 export const getCourses = () => {
   return (dispatch) => {
     dispatch(getCoursesRequest);
@@ -42,7 +95,6 @@ export const getCourses = () => {
       .get(baseUrl)
       .then((response) => {
         const courses = response.data;
-        // console.log("This is the response for courses ", courses)
         dispatch(getCoursesSuccess(courses));
       })
       .catch((error) => {
@@ -52,44 +104,24 @@ export const getCourses = () => {
   };
 };
 
-// POST Course - action creators
-export const postCourseRequest = () => {
-  return {
-    type: POST_COURSE_REQUEST,
-  };
-};
-
-const postCourseSuccess = (course) => {
-  return {
-    type: POST_COURSE_SUCCESS,
-    payload: course,
-  };
-};
-
-const postCourseFailure = (error) => {
-  return {
-    type: POST_COURSE_FAILURE,
-    payload: error,
-  };
-};
-
 // POST Course - THUNK async action creator
 export function postCourse(course) {
+  console.log("postCourse has been called with: ", course);
   const options = {
     headers: { "content-type": "application/json" },
   };
 
   return (dispatch) => {
+    console.log("postCourseRequest called within postCourse");
     dispatch(postCourseRequest);
     axios
       // .post(baseUrl + (course.id || ""), options)
       // course is coming in from the form
       .post(baseUrl, course, options)
       .then((course) => {
-        // console.log("this is the course.id", course.id);
         // currently no course.id exists so jumps to the second statement
         course.id
-          ? dispatch(putCourseSuccess(course))
+          ? console.log("This should be a put request") //dispatch(putCourseSuccess(course))
           : dispatch(postCourseSuccess(course));
       })
       .catch((error) => {
@@ -99,45 +131,26 @@ export function postCourse(course) {
   };
 }
 
-// PUT course action creators
-export const putCourseRequest = () => {
-  return {
-    type: PUT_COURSE_REQUEST,
-  };
-};
-
-const putCourseSuccess = (course) => {
-  return {
-    type: PUT_COURSE_SUCCESS,
-    payload: course,
-  };
-};
-
-const putCourseFailure = (error) => {
-  return {
-    type: PUT_COURSE_FAILURE,
-    payload: error,
-  };
-};
-
-// PUT course - THUNK async action creator
+// PUT course
 export function putCourse(course) {
+  console.log("putCourse has been called with: ", course);
   const options = {
     headers: { "content-type": "application/json" },
   };
 
   return (dispatch) => {
+    console.log("putCourseRequest called within putCourse");
     dispatch(putCourseRequest);
     axios
-      // .post(baseUrl + (course.id || ""), options)
-      // course is coming in from the form
-      .post(baseUrl, course, options)
-      .then(() => {
-        // console.log("this is the course.id", course.id);
-        // currently no course.id exists so jumps to the second statement
+      .put(baseUrl, course)
+      .then((course) => {
+        console.log(
+          "This is the course sent to dispatch putCourseSuccess",
+          course
+        );
         course.id
-          ? console.log("The other things happened for updates") // dispatch(putCourseSuccess(course))
-          : dispatch(putCourseSuccess(course));
+          ? dispatch(putCourseSuccess(course))
+          : console.log("this should be a post request");
       })
       .catch((error) => {
         const errorMsg = error.message;
