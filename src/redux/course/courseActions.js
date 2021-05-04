@@ -39,14 +39,14 @@ const getCoursesFailure = (error) => {
 
 // POST Course - action creators
 export const postCourseRequest = () => {
-  console.log("actionCretor postCourseRequest called");
+  console.log("actionCreator postCourseRequest called");
   return {
     type: POST_COURSE_REQUEST,
   };
 };
 
 const postCourseSuccess = (course) => {
-  console.log("actionCretor ostCourseSuccess called");
+  console.log("actionCreator postCourseSuccess called");
   return {
     type: POST_COURSE_SUCCESS,
     payload: course,
@@ -54,7 +54,7 @@ const postCourseSuccess = (course) => {
 };
 
 const postCourseFailure = (error) => {
-  console.log("actionCretor postCourseFailure called");
+  console.log("actionCreator postCourseFailure called");
   return {
     type: POST_COURSE_FAILURE,
     payload: error,
@@ -63,14 +63,14 @@ const postCourseFailure = (error) => {
 
 // PUT course action creators
 export const putCourseRequest = () => {
-  console.log("actionCretor putCourseRequest called");
+  console.log("actionCreator putCourseRequest called");
   return {
     type: PUT_COURSE_REQUEST,
   };
 };
 
 const putCourseSuccess = (course) => {
-  console.log("actionCretor putCourseSuccess called");
+  console.log("actionCreator putCourseSuccess called");
   return {
     type: PUT_COURSE_SUCCESS,
     payload: course,
@@ -78,7 +78,7 @@ const putCourseSuccess = (course) => {
 };
 
 const putCourseFailure = (error) => {
-  console.log("actionCretor putCourseFailure called");
+  console.log("actionCreator putCourseFailure called");
   return {
     type: PUT_COURSE_FAILURE,
     payload: error,
@@ -139,7 +139,7 @@ export function putCourse(course) {
   // };
 
   return (dispatch) => {
-    // console.log("putCourseRequest called within putCourse");
+    console.log("return with dispatch param and course: ", course);
     dispatch(putCourseRequest);
     axios
       .put(baseUrl, course)
@@ -153,6 +153,13 @@ export function putCourse(course) {
           : console.log("this should be a post request");
       })
       .catch((error) => {
+        if(error.response){
+          console.log(error.response)
+        }else if (error.request){
+          console.log(error.request)
+        }else{
+          console.log("something happened, but we don't know what")
+        }
         const errorMsg = error.message;
         dispatch(putCourseFailure(errorMsg));
       });
