@@ -142,7 +142,7 @@ export function putCourse(course) {
     console.log("return with dispatch param and course: ", course);
     dispatch(putCourseRequest);
     axios
-      .put(baseUrl, course)
+      .put(baseUrl + course.id, course)
       .then((course) => {
         console.log(
           "This is the course sent to dispatch putCourseSuccess",
@@ -154,9 +154,9 @@ export function putCourse(course) {
       })
       .catch((error) => {
         if(error.response){
-          console.log(error.response)
+          console.log("RESPONSE error:", error.response)
         }else if (error.request){
-          console.log(error.request)
+          console.log("REQUEST error:", error.request)
         }else{
           console.log("something happened, but we don't know what")
         }
