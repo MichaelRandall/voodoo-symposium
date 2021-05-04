@@ -134,12 +134,12 @@ export function postCourse(course) {
 // PUT course
 export function putCourse(course) {
   console.log("putCourse has been called with: ", course);
-  const options = {
-    headers: { "content-type": "application/json" },
-  };
+  // const options = {
+  //   headers: { "content-type": "application/json" },
+  // };
 
   return (dispatch) => {
-    console.log("putCourseRequest called within putCourse");
+    // console.log("putCourseRequest called within putCourse");
     dispatch(putCourseRequest);
     axios
       .put(baseUrl, course)
